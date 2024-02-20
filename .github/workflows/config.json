@@ -1,0 +1,37 @@
+{
+  "DISAMBIG_PREFIX": {
+    "hint": "Enter a disambiguation prefix (try initials with a sequence number, such as ejb01): ",
+    "value": "ejb01",
+    "type": "environment"
+  },
+  "USER_NAME": {
+    "hint": "Enter user name of GitHub account: ",
+    "value": "azure-javaee",
+    "type": "secrets"
+  },
+  "OWNER_REPONAME": {
+    "hint": "Enter owner/reponame (blank for upsteam of current fork): ",
+    "value":"",
+    "type": "secrets"
+  },
+  "CLIENT_ID": {
+    "hint": "Enter client ID for an Azure AD application registered in the Partner Center: ",
+    "value":"",
+    "type": "secrets"
+  },
+  "SECRET_VALUE": {
+    "hint": "Enter secret value for the Azure AD application registered in the Partner Center: ",
+    "value":"",
+    "type": "secrets"
+  },
+  "TENANT_ID": {
+    "hint": "Enter tenant ID for the Azure AD application registered in the Partner Center: ",
+    "value":"",
+    "type": "secrets"
+  },
+  "MSTEAMS_WEBHOOK": {
+    "hint": "[Optional] Enter Web hook for Microsoft Teams channel, or press 'Enter' to ignore: ",
+    "value":"",
+    "type": "secrets"
+  }
+}
