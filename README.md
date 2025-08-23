@@ -3,13 +3,13 @@
 
 # Related Repositories
 
-* [tWAS cluster on Azure VMs](https://github.com/WASdev/azure.websphere-traditional.cluster)
-* [Base images used in tWAS cluster](https://github.com/WASdev/azure.websphere-traditional.image)
-* [Liberty on ARO](https://github.com/WASdev/azure.liberty.aro)
+* [tWAS cluster on Azure VMs](https://github.com/azure-javaee/azure.websphere-traditional.cluster)
+* [Base images used in tWAS cluster](https://github.com/azure-javaee/azure.websphere-traditional.image)
+* [Liberty on ARO](https://github.com/azure-javaee/azure.liberty.aro)
 
 
 # Integration tests report
-[![IT Validation Workflows](https://github.com/WASdev/azure.liberty.aks/actions/workflows/it-validation-workflows.yaml/badge.svg)](https://github.com/WASdev/azure.liberty.aks/actions/workflows/it-validation-workflows.yaml)
+[![IT Validation Workflows](https://github.com/azure-javaee/azure.liberty.aks/actions/workflows/it-validation-workflows.yaml/badge.svg)](https://github.com/azure-javaee/azure.liberty.aks/actions/workflows/it-validation-workflows.yaml)
 
 # Deploy a Java application with Open Liberty or WebSphere Liberty on an Azure Kubernetes Service (AKS) cluster
 
