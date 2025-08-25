@@ -33,7 +33,7 @@ resource deploymentScript 'Microsoft.Resources/deploymentScripts@${azure.apiVers
   kind: 'AzureCLI'
   identity: identity
   properties: {
-    azCliVersion: '2.33.1'
+    azCliVersion: '2.53.0'
     primaryScriptUri: uri(const_scriptLocation, 'enableAgic.sh${_artifactsLocationSasToken}')
     supportingScriptUris: [
       uri(const_scriptLocation, 'utility.sh${_artifactsLocationSasToken}')

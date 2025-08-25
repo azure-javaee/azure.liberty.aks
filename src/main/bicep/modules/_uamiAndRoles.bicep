@@ -17,9 +17,11 @@
 
 param location string
 param name_deploymentScriptContributorRoleAssignmentName string = newGuid()
+param name_deploymentScriptUserAccessAdminRoleAssignmentName string = newGuid()
 
 // https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
 var const_roleDefinitionIdOfContributor = 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+var const_roleDefinitionIdOfUserAccessAdmin = '18d7d88d-d35e-4fb5-a5c3-030ccdb750aa'
 var name_deploymentScriptUserDefinedManagedIdentity = 'ol-aks-deployment-script-user-defined-managed-itentity-${substring(uniqueString(name_deploymentScriptContributorRoleAssignmentName),0,5)}'
 
 
@@ -35,6 +37,16 @@ module deploymentScriptUAMICotibutorRoleAssignment '_rolesAssignment/_roleAssign
   scope: subscription()
   params: {
     roleDefinitionId: const_roleDefinitionIdOfContributor
+    principalId: reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', name_deploymentScriptUserDefinedManagedIdentity)).principalId
+  }
+}
+
+// Grant permissions to create role assignments (required for AGIC enablement)
+module deploymentScriptUAMIUserAccessAdminRoleAssignment '_rolesAssignment/_roleAssignmentinSubscription.bicep' = {
+  name: name_deploymentScriptUserAccessAdminRoleAssignmentName
+  scope: subscription()
+  params: {
+    roleDefinitionId: const_roleDefinitionIdOfUserAccessAdmin
     principalId: reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', name_deploymentScriptUserDefinedManagedIdentity)).principalId
   }
 }
