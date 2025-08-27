@@ -17,16 +17,13 @@
 
 param location string
 param name_deploymentScriptContributorRoleAssignmentName string = newGuid()
-param name_deploymentScriptUserAccessAdminRoleAssignmentName string = newGuid()
-
 // https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
 var const_roleDefinitionIdOfContributor = 'b24988ac-6180-42a0-ab88-20f7382dd24c'
-var const_roleDefinitionIdOfUserAccessAdmin = '18d7d88d-d35e-4fb5-a5c3-030ccdb750aa'
 var name_deploymentScriptUserDefinedManagedIdentity = 'ol-aks-deployment-script-user-defined-managed-itentity-${substring(uniqueString(name_deploymentScriptContributorRoleAssignmentName),0,5)}'
 
 
 // UAMI for deployment script
-resource uamiForDeploymentScript 'Microsoft.ManagedIdentity/userAssignedIdentities@${azure.apiVersionForIdentity}' = {
+resource uamiForDeploymentScript 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
   name: name_deploymentScriptUserDefinedManagedIdentity
   location: location
 }
@@ -41,14 +38,8 @@ module deploymentScriptUAMICotibutorRoleAssignment '_rolesAssignment/_roleAssign
   }
 }
 
-// Grant permissions to create role assignments (required for AGIC enablement)
-module deploymentScriptUAMIUserAccessAdminRoleAssignment '_rolesAssignment/_roleAssignmentinSubscription.bicep' = {
-  name: name_deploymentScriptUserAccessAdminRoleAssignmentName
-  scope: subscription()
-  params: {
-    roleDefinitionId: const_roleDefinitionIdOfUserAccessAdmin
-    principalId: reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', name_deploymentScriptUserDefinedManagedIdentity)).principalId
-  }
-}
+// Note: The User Access Administrator role assignment has been removed because it requires
+// high privileges that might not be available in all subscriptions.
+// The Contributor role above should be sufficient for most AGIC deployments.
 
 output uamiIdForDeploymentScript string = uamiForDeploymentScript.id
