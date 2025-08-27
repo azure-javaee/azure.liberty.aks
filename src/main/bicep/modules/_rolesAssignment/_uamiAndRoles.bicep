@@ -23,13 +23,13 @@ var name_deploymentScriptUserDefinedManagedIdentity = 'ol-aks-deployment-script-
 
 
 // UAMI for deployment script
-resource uamiForDeploymentScript 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
+resource uamiForDeploymentScript 'Microsoft.ManagedIdentity/userAssignedIdentities@${azure.apiVersionForIdentity}' = {
   name: name_deploymentScriptUserDefinedManagedIdentity
   location: location
 }
 
 // Assign Contributor role in subscription scope, we need the permission to get/update resource cross resource groups.
-module deploymentScriptUAMICotibutorRoleAssignment '_rolesAssignment/_roleAssignmentinSubscription.bicep' = {
+module deploymentScriptUAMICotibutorRoleAssignment '_roleAssignmentinSubscription.bicep' = {
   name: name_deploymentScriptContributorRoleAssignmentName
   scope: subscription()
   params: {

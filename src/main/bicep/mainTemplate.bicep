@@ -198,7 +198,7 @@ module partnerCenterPid './modules/_pids/_empty.bicep' = {
   params: {}
 }
 
-module uamiDeployment 'modules/_uamiAndRoles.bicep' = {
+module uamiDeployment 'modules/_rolesAssignment/_uamiAndRoles.bicep' = {
   name: 'uami-deployment'
   params: {
     location: location
